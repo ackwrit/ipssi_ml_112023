@@ -46,8 +46,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //variables
+  TextEditingController phrase = TextEditingController();
+  String langueIdentifier = "";
+  LanguageIdentifier langue = LanguageIdentifier(confidenceThreshold: 0.3);
 
   //méthodes
+  //identifier la langue
+  uniqueLangueIndentifier() async {
+    langueIdentifier = "";
+    String str = "";
+    if (phrase.text != "") {
+      str = await langue.identifyLanguage(phrase.text);
+    }
+    setState(() {
+      langueIdentifier = "La langue est $str";
+    });
+  }
+
+  pluseiursLangueIdentifier() async {
+    langueIdentifier = "";
+    List str = [];
+    if (phrase != "") {
+      str = await langue.identifyPossibleLanguages(phrase.text);
+      for (IdentifiedLanguage label in str) {
+        setState(() {
+          langueIdentifier +=
+              "la langue est ${label.languageTag} avec une confiance de ${(label.confidence * 100).toInt()} %\n";
+        });
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -61,7 +89,20 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Machine Learning"),
       ),
-      body: const Text("du machine learning"),
+      body: Column(
+        children: [
+          TextField(
+            controller: phrase,
+          ),
+          ElevatedButton(
+              onPressed: uniqueLangueIndentifier,
+              child: const Text("Detecter langue")),
+          ElevatedButton(
+              onPressed: pluseiursLangueIdentifier,
+              child: const Text("Detecter plusieurs langues")),
+          Text(langueIdentifier)
+        ],
+      ),
     );
   }
 }
