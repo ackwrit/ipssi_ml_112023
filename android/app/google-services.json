@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800420039680",
+    "project_id": "mlipssi112023",
+    "storage_bucket": "mlipssi112023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800420039680:android:225d04efb71f7b69c61ce5",
+        "android_client_info": {
+          "package_name": "com.example.mlearning_ippsi112023"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe3La17Bzx2nATB8WGyCKjbX8fi4CTBNE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
